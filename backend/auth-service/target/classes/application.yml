@@ -1,0 +1,47 @@
+# Auth Service Configuration
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+
+  # H2 Database for development
+  datasource:
+    url: jdbc:h2:mem:campusbyte;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+
+# JWT Configuration
+jwt:
+  secret: CampusByteSecretKeyForJWTTokenGeneration2024SecureKeyMustBe256BitsLong
+  access-token-expiration: 3600000  # 1 hour in milliseconds
+  refresh-token-expiration: 604800000  # 7 days in milliseconds
+
+# Logging
+logging:
+  level:
+    com.campusbyte: DEBUG
+    org.springframework.security: DEBUG
+
+# OpenAPI
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
